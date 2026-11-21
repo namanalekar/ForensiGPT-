@@ -15,7 +15,7 @@ class Settings(BaseSettings):
 
     # Gemini configuration
     GEMINI_API_KEY: str = Field(default="", description="Google Gemini API Key")
-    GEMINI_MODEL: str = Field(default="gemini-2.5-flash", description="Gemini Model Identifier")
+    GEMINI_MODEL: str = Field(default="gemini-3.5-flash", description="Gemini Model Identifier")
 
     # Storage paths
     BASE_DIR: Path = Path(__file__).resolve().parent.parent.parent

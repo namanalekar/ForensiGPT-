@@ -34,7 +34,7 @@ export const App: React.FC = () => {
   const [activeCase, setActiveCase] = useState<CaseData | null>(null);
   const [loadingCases, setLoadingCases] = useState<boolean>(true);
   const [privacyMode, setPrivacyMode] = useState<boolean>(false);
-  const [geminiModel, setGeminiModel] = useState<string>('gemini-2.5-flash');
+  const [geminiModel, setGeminiModel] = useState<string>('gemini-3.5-flash');
 
   // Active view tab: 'files' | 'timeline' | 'report'
   const [activeTab, setActiveTab] = useState<'files' | 'timeline' | 'report'>('files');
