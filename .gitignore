@@ -33,6 +33,9 @@ backend/data/visuals/
 # Frontend build
 frontend/dist/
 frontend/node_modules/
+.next/
+frontend/.next/
+*.tsbuildinfo
 
 # Logs
 *.log

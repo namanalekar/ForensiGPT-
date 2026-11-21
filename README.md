@@ -119,9 +119,14 @@ uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 ```bash
 cd frontend
 npm install
+
+# Run with Vite (Fast dev server on port 5173):
 npm run dev
+
+# Or run with Next.js (App Router on port 3000):
+npm run dev:next
 ```
-Access the UI at `http://localhost:5173`.
+Access the UI at `http://localhost:5173` (Vite) or `http://localhost:3000` (Next.js).
 
 ---
 
