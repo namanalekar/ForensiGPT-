@@ -1,0 +1,4 @@
+cd /d C:\Users\naman\.gemini\antigravity\scratch\forensigpt
+git rm --cached backend/data/reports/2b3771b6-a49a-4e21-9e3f-3a2103debc1c_forensic_report.pdf
+git add .
+git commit -m "feat: Initial release of ForensiGPT v1.0 AI-Powered DFIR Investigator" -m "Full-stack production quality implementation including: Python 3.12 + FastAPI + Pydantic v2 backend, React 18 + Vite + TypeScript + Tailwind CSS dark security-console UI, magic byte detection, EXIF/XMP/IPTC forensics, ELA, LSB bitplane, entropy heatmap, anti-prompt-injection guard (EVID-INJ-001), image-to-log temporal synchronization swimlane correlation engine, MITRE ATT&CK mapping with IOC defanging, Gemini-structured reports with Privacy Mode offline fallback, PDF/MD/JSON/CSV export, Ask the Evidence grounded chat, 29/29 unit tests passing, Docker + docker-compose packaging, MIT License."
