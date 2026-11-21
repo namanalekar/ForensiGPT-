@@ -20,6 +20,7 @@ interface FileCardProps {
   onAnalyze: (file: ForensicFile) => void;
   onViewTriView?: (file: ForensicFile) => void;
   onCorrelate?: (file: ForensicFile) => void;
+  onGenerateReport?: () => void;
   onDelete: (fileId: string) => void;
 }
 
@@ -28,6 +29,7 @@ export const FileCard: React.FC<FileCardProps> = ({
   onAnalyze,
   onViewTriView,
   onCorrelate,
+  onGenerateReport,
   onDelete
 }) => {
   const [showHashes, setShowHashes] = useState(false);
@@ -228,6 +230,16 @@ export const FileCard: React.FC<FileCardProps> = ({
             >
               <Clock className="w-3.5 h-3.5 text-purple-400" />
               Correlate with Logs
+            </button>
+          )}
+
+          {onGenerateReport && (
+            <button
+              onClick={onGenerateReport}
+              className="px-3 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black text-xs font-bold flex items-center gap-1.5 shadow-sm shadow-cyan-500/20 transition"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              Synthesize AI Report
             </button>
           )}
         </div>

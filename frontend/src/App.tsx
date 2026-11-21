@@ -299,6 +299,37 @@ export const App: React.FC = () => {
           <div className="space-y-6">
             <UploadZone onUpload={handleUpload} isUploading={isUploading} />
 
+            {/* Ingestion & Investigation Banner */}
+            {activeCase && activeCase.files.length > 0 && (
+              <div className="p-4 rounded-xl bg-gradient-to-r from-cyan-950/40 via-slate-900 to-slate-900 border border-cyan-800/40 flex flex-wrap items-center justify-between gap-4 shadow-lg">
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                    <h4 className="text-sm font-bold text-white font-mono">
+                      {activeCase.files.length} Forensic Evidence {activeCase.files.length === 1 ? 'Artifact' : 'Artifacts'} Ingested
+                    </h4>
+                  </div>
+                  <p className="text-xs text-slate-300">
+                    Static analysis complete with cryptographic chain-of-custody. Click below to synthesize the Gemini AI investigation report.
+                  </p>
+                </div>
+                <button
+                  onClick={() => {
+                    if (privacyMode) {
+                      handleGenerateReport();
+                    } else {
+                      setIsRedactionOpen(true);
+                    }
+                  }}
+                  disabled={isGeneratingReport}
+                  className="px-5 py-2.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-black font-bold text-xs flex items-center gap-2 shadow-lg shadow-cyan-500/25 transition disabled:opacity-50"
+                >
+                  <FileText className="w-4 h-4" />
+                  {isGeneratingReport ? 'Synthesizing with Gemini...' : 'Synthesize Forensic Dossier with Gemini'}
+                </button>
+              </div>
+            )}
+
             <div className="space-y-3">
               <div className="flex items-center justify-between text-xs font-mono text-slate-400">
                 <span>INGESTED EVIDENCE ARTIFACTS</span>
@@ -320,12 +351,26 @@ export const App: React.FC = () => {
                         await refreshActiveCase();
                         if (file.detected_category === 'image') {
                           setTriViewFile(file);
+                        } else if (file.detected_category === 'log') {
+                          setActiveTab('timeline');
                         } else {
-                          alert(`Completed deep parsing for ${file.original_filename}. Inspect results in timeline or report.`);
+                          // For executables / documents, open the report directly!
+                          if (privacyMode) {
+                            handleGenerateReport();
+                          } else {
+                            setIsRedactionOpen(true);
+                          }
                         }
                       }}
                       onViewTriView={(file) => setTriViewFile(file)}
                       onCorrelate={(file) => setActiveTab('timeline')}
+                      onGenerateReport={() => {
+                        if (privacyMode) {
+                          handleGenerateReport();
+                        } else {
+                          setIsRedactionOpen(true);
+                        }
+                      }}
                       onDelete={handleDeleteFile}
                     />
                   ))}
